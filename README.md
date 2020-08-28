@@ -22,3 +22,7 @@ Simply import pom.xml into your favourite IDE or editor.
 `java -jar <the jar file>`, then visit `localhost:8080/?message=<your message>&name=<your name>` to see what this stupid server can do for you 😂
 
 Or you can click the run button in your favourite IDE or editor if it supports
+
+## Credit
+
+- [Spring Initializr](https://start.spring.io/)
