@@ -122,6 +122,14 @@
 				<groupId>net.alchim31.maven</groupId>
 				<artifactId>scala-maven-plugin</artifactId>
 				<version>4.4.0</version>
+				<executions> <!-- must explicitly set these goals, otherwise nothing get compiled during mvn commands -->
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>testCompile</goal>
+						</goals>
+					</execution>
+				</executions>
 				<configuration>
 					<args>
 						<arg>-language:implicitConversions</arg>
