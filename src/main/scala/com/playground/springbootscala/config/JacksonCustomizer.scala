@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder
 
 /**
- *
+ * will be picked up when a bean of [[Jackson2ObjectMapperBuilder]] is gotten
  */
 @Configuration
 class JacksonCustomizer extends Jackson2ObjectMapperBuilderCustomizer {

@@ -10,7 +10,7 @@ class JacksonObjMappersConfig {
   private val log = com.typesafe.scalalogging.Logger[this.type]
 
   @Bean @Primary
-  def springDefaultBuilder(builder: Jackson2ObjectMapperBuilder): ObjectMapper ={
+  def springDefaultMapper(builder: Jackson2ObjectMapperBuilder): ObjectMapper ={
     log.debug("Using Spring Boot default object mapper")
     builder.build()
   }
