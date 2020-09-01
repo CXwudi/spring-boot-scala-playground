@@ -113,9 +113,52 @@
 
 	<build>
 		<plugins>
+<!--			<plugin>-->
+<!--				<groupId>org.springframework.boot</groupId>-->
+<!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--			</plugin>-->
+
+
+			<plugin> <!-- make sure maven produce jar file for each components -->
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<!-- children copy all these setting, and finish the mainClass -->
+							<!-- base on the package-all assembly zip.xml configuration,
+               all modules dependencies will be found in the same directory,
+               and the class path naming should be custom,
+               which need to stay same with zip.xml in assembly plugin -->
+							<addClasspath>true</addClasspath>
+							<classpathLayoutType>custom</classpathLayoutType>
+							<!--suppress UnresolvedMavenProperty -->
+							<customClasspathLayout>$${artifact.artifactId}$${dashClassifier?}.$${artifact.extension}</customClasspathLayout>
+							<!-- children plz indicate your main class -->
+							 <mainClass>com.playground.springbootscala.SpringBootScalaApplication</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>make-assembly</id> <!-- this is used for inheritance merges -->
+						<phase>package</phase> <!-- bind to the packaging phase -->
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<appendAssemblyId>false</appendAssemblyId>
+					<outputDirectory>${project.basedir}/release</outputDirectory>
+					<descriptors>
+						<!-- children plz specify your location of configuration file -->
+						<descriptor>zip.xml</descriptor> <!-- default path -->
+					</descriptors>
+				</configuration>
 			</plugin>
 
 			<plugin>
